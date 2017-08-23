@@ -1,0 +1,13 @@
+SELECT ?registrationNumber ?modelName ?numberEngines ?builtByAmateur ?categoryName ?manufacturerName  {
+	?s a :Aircraft ;
+		prop:registrationNumber "$id$" .
+	OPTIONAL {?s prop:registrationNumber ?registrationNumber} .
+	OPTIONAL {?s rel:hasModel ?aircraftModel .
+		?aircraftModel prop:name ?modelName }
+	OPTIONAL {?aircraftModel prop:numberEngines ?numberEngines . }
+	OPTIONAL {?aircraftModel prop:builtByAmateur ?builtByAmateur }
+	OPTIONAL {?aircraftModel rel:hasCategory ?category .
+		?category prop:description ?categoryName} .
+	OPTIONAL {?aircraftModel rel:isFromManufacturer ?manufacturer .
+		?manufacturer prop:name ?manufacturerName}
+}
